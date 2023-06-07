@@ -48,7 +48,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="actions">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -64,13 +64,13 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">#groupBox {
+    <string notr="true">#actions {
 border: 2px solid black;
 border-radius: 4px;
 }</string>
    </property>
    <property name="title">
-    <string>Login :</string>
+    <string>Actions :</string>
    </property>
    <property name="flat">
     <bool>false</bool>
@@ -298,6 +298,34 @@ background-color:#27a9e3;
      <string>Langues</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QGroupBox" name="action">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>150</y>
+     <width>891</width>
+     <height>541</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#action {
+border: 2px solid black;
+border-radius: 4px;
+}</string>
+   </property>
+   <property name="title">
+    <string>Action :</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
   </widget>
  </widget>
  <resources/>
