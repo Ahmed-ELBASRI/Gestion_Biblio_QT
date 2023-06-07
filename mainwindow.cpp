@@ -54,7 +54,6 @@ void MainWindow::on_bt_login_clicked()
                     home h;
                     h.setModal(true);
                     h.exec();
-
                 }
                 else {
                    QMessageBox::information(this,"login failed","not connected");

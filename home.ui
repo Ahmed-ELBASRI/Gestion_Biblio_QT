@@ -48,6 +48,257 @@
     </item>
    </layout>
   </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>381</width>
+     <height>541</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#groupBox {
+border: 2px solid black;
+border-radius: 4px;
+}</string>
+   </property>
+   <property name="title">
+    <string>Login :</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+   <widget class="QPushButton" name="bt_reservation">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_reservation{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_reservation:hover{
+
+background-color:#27a9e3;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>Reservation</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_emprunte">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>110</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_emprunte{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_emprunte:hover{
+
+background-color:#27a9e3;
+
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Empruntes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_livre">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_livre{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_livre:hover{
+
+background-color:#27a9e3;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>Livres</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_etager_rayon">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>250</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_etager_rayon{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_etager_rayon:hover{
+background-color:#27a9e3;
+}</string>
+    </property>
+    <property name="text">
+     <string>Etagers et Rayons</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_categorie">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_categorie{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_categorie:hover{
+
+background-color:#27a9e3;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>Categories</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_auteur">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>390</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_auteur{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_auteur:hover{
+
+background-color:#27a9e3;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>Auteurs</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bt_langue">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>460</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_langue{
+color:black;
+background-color:#e1e1e1;
+border-width:0px;
+border-radius:4px;
+}
+#bt_langue:hover{
+
+background-color:#27a9e3;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>Langues</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>
