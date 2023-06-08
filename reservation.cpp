@@ -34,7 +34,7 @@ void reservation::populateReservationTable(){
                 QString titreLivre = query.value("TITRE").toString();
                 QString dateRes = query.value("DATE RESERVATION").toString();
 
-                // Retrieve other reservation details as needed
+//                 Retrieve other reservation details as needed
 
                 QTableWidgetItem *idres = new QTableWidgetItem(idReservation);
                 QTableWidgetItem *idperso = new QTableWidgetItem(idPersonne);
@@ -100,6 +100,10 @@ void reservation::confirmReservation()
                     QMessageBox::information(this, "Confirmation", "Reservation confirmed successfully.");
                 if(q2 == true){
                         QMessageBox::information(this, "Confirmation", "Emprunte confirmed successfully.");
+                        ui->table_reservation->clearContents();
+                        ui->table_reservation->setRowCount(0);
+                        populateReservationTable();
+
 
                     }
                 }
@@ -126,6 +130,9 @@ void reservation::refuseReservation()
             if(db.open()){
                 if (q == true) {
                     QMessageBox::information(this, "Confirmation", "Reservation refused successfully.");
+                    ui->table_reservation->clearContents();
+                    ui->table_reservation->setRowCount(0);
+                    populateReservationTable();
 
                 } else {
                         QMessageBox::information(this, "Error", query.lastError().text());
@@ -153,32 +160,28 @@ void reservation::on_bt_recherche_clicked()
     QString searchOption = ui->comboBox->currentText();
     QString keyword = ui->tb_search->text();
 
-    if (keyword.isEmpty())
-    {
-//      QMessageBox::information(this,"Error","espace de recherche est vide");
-    }
-    else
-    {
+
             for (int row = 0; row < ui->table_reservation->rowCount(); ++row)
             {
-            QTableWidgetItem *item = ui->table_reservation->item(row, ui->comboBox->currentIndex());
-            if (item && item->text().contains(keyword, Qt::CaseInsensitive))
-            {
-                ui->table_reservation->setRowHidden(row, false);
+                QTableWidgetItem *item = ui->table_reservation->item(row, ui->comboBox->currentIndex());
+                if (item && item->text().contains(keyword, Qt::CaseInsensitive))
+                {
+                    ui->table_reservation->setRowHidden(row, false);
+                }
+                else
+                {
+                    ui->table_reservation->setRowHidden(row, true);
+                }
             }
-            else
-            {
-                ui->table_reservation->setRowHidden(row, true);
-            }
-            }
-    }
 }
-
 
 
 
 void reservation::on_bt_reload_clicked()
 {
+    ui->table_reservation->clearContents();
+    ui->table_reservation->setRowCount(0);
     populateReservationTable();
+
 }
 
