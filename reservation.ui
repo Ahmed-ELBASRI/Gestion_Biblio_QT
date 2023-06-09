@@ -129,15 +129,15 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">#bt_login{
+    <string notr="true">#bt_recherche{
 color:black;
-background-color:#27a9e3;
+background-color:#a0a0a0;
 border-width:0px;
 border-radius:4px;
 }
-#bt_login:hover{
+#bt_recherche:hover{
 
-background-color:#66c011;
+background-color:#27a9e3;
 
 }</string>
    </property>
@@ -260,15 +260,15 @@ background-color:#66c011;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">#bt_login{
+    <string notr="true">#bt_reload{
 color:black;
-background-color:#27a9e3;
+background-color:#a0a0a0;
 border-width:0px;
 border-radius:4px;
 }
-#bt_login:hover{
+#bt_reload:hover{
 
-background-color:#66c011;
+background-color:#27a9e3;
 
 }</string>
    </property>

@@ -6,19 +6,22 @@ reservation::reservation(QWidget *parent) :
     ui(new Ui::reservation)
 {
     ui->setupUi(this);
+
+
+}
+void reservation::showEvent(QShowEvent *event){
+    QDialog::showEvent(event);
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("127.0.0.1");
     db.setUserName("root");
     db.setPassword("");
     db.setDatabaseName("gestion_biblio");
-}
-void reservation::showEvent(QShowEvent *event){
-    QDialog::showEvent(event);
+    db.open();
     populateReservationTable();
 }
 void reservation::populateReservationTable(){
     // Retrieve the reservations from the database and populate the table widget
-    QSqlQuery query("SELECT r.ID_RESERVATION,p.ID_PERSONNE,p.NOM,p.PRENOM,r.ID_LIVRE,l.TITRE,DATE(r.DATERESERVATION) as 'DATE RESERVATION' FROM reserverlivre r inner join personne p on r.ID_PERSONNE = p.ID_PERSONNE INNER join livre l on r.ID_LIVRE = l.ID_LIVRE where r.archive = 0 and r.ETAT like 'pending'");
+        QSqlQuery query("SELECT r.ID_RESERVATION,p.ID_PERSONNE,p.NOM,p.PRENOM,r.ID_LIVRE,l.TITRE,DATE(r.DATERESERVATION) as 'DATE RESERVATION' FROM reserverlivre r inner join personne p on r.ID_PERSONNE = p.ID_PERSONNE INNER join livre l on r.ID_LIVRE = l.ID_LIVRE where r.archive = 0 and r.ETAT like 'pending'");
 
     int row = 0;
     if(db.open()){
@@ -73,7 +76,7 @@ void reservation::populateReservationTable(){
             QMessageBox::information(this,"failed","query is false");
         }
     }else{
-        QMessageBox::information(this, "Connection", "connection failed");
+        QMessageBox::information(this, "Connection",db.lastError().text());
     }
 }
 void reservation::confirmReservation()
