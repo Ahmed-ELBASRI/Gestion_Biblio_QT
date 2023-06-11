@@ -29,11 +29,21 @@ private slots:
 
     void on_bt_ajouter_clicked();
 
+    void on_check_modifer_stateChanged(int arg1);
+
+    void on_cb_livre_currentIndexChanged();
+
+    void on_bt_modifier_clicked();
+
+    void on_bt_supprimer_clicked();
+
 private:
     Ui::livres *ui;
     void showEvent(QShowEvent *event);
     QSqlDatabase db;
     void populateCombosLivre();
+    void initialize();
+    void clearFields();
 };
 
 #endif // LIVRES_H

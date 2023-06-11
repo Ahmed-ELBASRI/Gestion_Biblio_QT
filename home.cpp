@@ -6,19 +6,19 @@ home::home(QWidget *parent) :
     ui(new Ui::home)
 {
     ui->setupUi(this);
-    res = new reservation(ui->action);
+    res = new reservation(ui->actions);
     res->hide();
-    auteur = new Auteurs(ui->action);
+    auteur = new Auteurs(ui->actions);
     auteur->hide();
-    categorie = new categories(ui->action);
+    categorie = new categories(ui->actions);
     categorie->hide();
-    livre = new livres(ui->action);
+    livre = new livres(ui->actions);
     livre->hide();
-    emprunte = new enmpruntes(ui->action);
+    emprunte = new enmpruntes(ui->actions);
     emprunte->hide();
-    langue = new Langues(ui->action);
+    langue = new Langues(ui->actions);
     langue->hide();
-    etager_rayon = new etages_rayons(ui->action);
+    etager_rayon = new etages_rayons(ui->actions);
     etager_rayon->hide();
 }
 

@@ -56,7 +56,9 @@ void MainWindow::on_bt_login_clicked()
                     h.exec();
                 }
                 else {
-                   QMessageBox::information(this,"login failed","not connected");
+                   QMessageBox::information(this,"login failed","email or password is not correct");
+                    ui->tb_email->clear();
+                    ui->tb_password->clear();
                 }
             }
         }else{
