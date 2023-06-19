@@ -18,7 +18,8 @@ SOURCES += \
     livres.cpp \
     main.cpp \
     mainwindow.cpp \
-    reservation.cpp
+    reservation.cpp \
+    touslivres.cpp
 
 HEADERS += \
     auteurs.h \
@@ -29,7 +30,8 @@ HEADERS += \
     langues.h \
     livres.h \
     mainwindow.h \
-    reservation.h
+    reservation.h \
+    touslivres.h
 
 FORMS += \
     auteurs.ui \
@@ -40,7 +42,8 @@ FORMS += \
     langues.ui \
     livres.ui \
     mainwindow.ui \
-    reservation.ui
+    reservation.ui \
+    touslivres.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

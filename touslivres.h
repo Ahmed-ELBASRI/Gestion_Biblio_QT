@@ -1,5 +1,5 @@
-#ifndef EMPRUNTES_H
-#define EMPRUNTES_H
+#ifndef TOUSLIVRES_H
+#define TOUSLIVRES_H
 
 #include <QDialog>
 #include <QtSql>
@@ -7,28 +7,29 @@
 #include <QMessageBox>
 #include <QTableWidgetItem>
 #include <QDateTime>
+
 namespace Ui {
-class enmpruntes;
+class tousLivres;
 }
 
-class enmpruntes : public QDialog
+class tousLivres : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit enmpruntes(QWidget *parent = nullptr);
-    ~enmpruntes();
+    explicit tousLivres(QWidget *parent = nullptr);
+    ~tousLivres();
 
 private slots:
     void on_bt_reload_clicked();
-    void confirmReservation();
+
     void on_bt_recherche_clicked();
 
 private:
-    Ui::enmpruntes *ui;
+    Ui::tousLivres *ui;
     void showEvent(QShowEvent *event);
     QSqlDatabase db;
-    void populateEmprunteTable();
+    void populateReservationTable();
 };
 
-#endif // EMPRUNTES_H
+#endif // TOUSLIVRES_H

@@ -160,13 +160,13 @@ reservation::~reservation()
 
 void reservation::on_bt_recherche_clicked()
 {
-    QString searchOption = ui->comboBox->currentText();
+    int searchOption = ui->comboBox->currentIndex();
     QString keyword = ui->tb_search->text();
 
 
             for (int row = 0; row < ui->table_reservation->rowCount(); ++row)
             {
-                QTableWidgetItem *item = ui->table_reservation->item(row, ui->comboBox->currentIndex());
+                QTableWidgetItem *item = ui->table_reservation->item(row, searchOption);
                 if (item && item->text().contains(keyword, Qt::CaseInsensitive))
                 {
                     ui->table_reservation->setRowHidden(row, false);
@@ -184,6 +184,7 @@ void reservation::on_bt_reload_clicked()
 {
     ui->table_reservation->clearContents();
     ui->table_reservation->setRowCount(0);
+    ui->tb_search->clear();
     populateReservationTable();
 
 }

@@ -35,7 +35,6 @@ void MainWindow::on_bt_login_clicked()
 
         QByteArray passwordData = password.toUtf8(); // Convert the QString to a QByteArray
         QByteArray passwordHash = QCryptographicHash::hash(passwordData, QCryptographicHash::Md5); // Calculate the MD5 hash
-
         QString pwd = QString(passwordHash.toHex()); // Convert the QByteArray to a QString
 
         //select query
@@ -54,12 +53,12 @@ void MainWindow::on_bt_login_clicked()
                     home h;
                     h.setModal(true);
                     h.exec();
+                    break;
                 }
-                else {
                    QMessageBox::information(this,"login failed","email or password is not correct");
                     ui->tb_email->clear();
                     ui->tb_password->clear();
-                }
+                    break;
             }
         }else{
             QMessageBox::information(this,"failed","query is false");

@@ -8,6 +8,7 @@
 #include <QTableWidgetItem>
 #include <QDateTime>
 #include <QFileDialog>
+#include "touslivres.h"
 namespace Ui {
 class livres;
 }
@@ -37,6 +38,8 @@ private slots:
 
     void on_bt_supprimer_clicked();
 
+    void on_bt_afficher_clicked();
+
 private:
     Ui::livres *ui;
     void showEvent(QShowEvent *event);
@@ -44,6 +47,9 @@ private:
     void populateCombosLivre();
     void initialize();
     void clearFields();
+    tousLivres *touslivre;
+
+
 };
 
 #endif // LIVRES_H

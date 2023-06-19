@@ -5,7 +5,10 @@ livres::livres(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::livres)
 {
+
     ui->setupUi(this);
+    touslivre = new tousLivres(ui->groupBox);
+    touslivre->hide();
 }
 
 livres::~livres()
@@ -22,7 +25,6 @@ void livres::showEvent(QShowEvent *event){
     db.open();
     populateCombosLivre();
     ui->bt_ajouter->setEnabled(false);
-
 }
 void livres::clearFields(){
     ui->tb_description->clear();
@@ -42,7 +44,7 @@ void livres::populateCombosLivre()
             ui->cb_etagers->addItem(rayon);
         }
     }
-    QSqlQuery livreQuery("select l.ID_LIVRE, l.TITRE from livre l INNER join rediger r on l.ID_LIVRE = r.ID_LIVRE INNER join auteur a on r.ID_AUTEUR = a.ID_AUTEUR INNER join rayon ra on l.ID_RAYON = ra.ID_RAYON INNER JOIN etagere e on ra.ID_RAYON = e.ID_ETAGERE group by l.ID_LIVRE ");
+    QSqlQuery livreQuery("select l.ID_LIVRE, l.TITRE from livre l ");
     if(livreQuery.exec()){
         while (livreQuery.next()) {
             QString livre = livreQuery.value("TITRE").toString();
@@ -134,7 +136,7 @@ void livres::on_bt_ajouter_clicked()
     QFile::copy(couverturePath, destinationPath);
     QString subPath = destinationPath.mid(destinationPath.indexOf("images"));
     QString couvertureMinPath = ui->img_couv_min->text();
-    QString destinationDirectoryMin = "C:/xampp/htdocs/GestionBiblio/images/book_cover/book_cover_min";
+    QString destinationDirectoryMin = "C:/xampp/htdocs/GestionBiblio/images/book_cover/wishlist_image";
     QString fileNameMin = QFileInfo(couvertureMinPath).fileName();
     QString destinationPathMin = QDir(destinationDirectoryMin).filePath(fileNameMin);
     QFile::copy(couvertureMinPath, destinationPathMin);
@@ -174,6 +176,7 @@ void livres::on_bt_ajouter_clicked()
     int selectedAuthorIndex = ui->cb_auteur->currentIndex();
     int idAuteur = ui->cb_auteur->itemData(selectedAuthorIndex).toInt();
     rediger.prepare("insert into rediger values(:idlivre,:id_auteur)");
+
     rediger.bindValue(":idlivre",IDValue);
     rediger.bindValue(":id_auteur",idAuteur);
     if(rediger.exec()){
@@ -222,15 +225,7 @@ void livres::on_cb_livre_currentIndexChanged()
     int selectedIndex = ui->cb_livre->currentIndex();
     int idLivre = ui->cb_livre->itemData(selectedIndex).toInt();
     QSqlQuery query;
-    query.prepare("SELECT l.*, a.*, e.ID_ETAGERE, c.LIBELLE_CATEGORIE, la.LIBELLE_LANGUE FROM livre l "
-                  "INNER JOIN rediger r ON l.ID_LIVRE = r.ID_LIVRE "
-                  "INNER JOIN auteur a ON r.ID_AUTEUR = a.ID_AUTEUR "
-                  "INNER JOIN rayon ra ON l.ID_RAYON = ra.ID_RAYON "
-                  "INNER JOIN etagere e ON ra.ID_ETAGER = e.ID_ETAGERE "
-                  "INNER JOIN categorie c ON l.ID_CATEGORIE = c.ID_CATEGORIE "
-                  "INNER JOIN lange la ON l.ID_LANGUE = la.ID_LANGUE "
-                  "WHERE l.ID_LIVRE = :idlivre "
-                  "GROUP BY l.ID_LIVRE");
+    query.prepare("SELECT l.*, a.*, e.ID_ETAGERE, c.LIBELLE_CATEGORIE, la.LIBELLE_LANGUE FROM livre l  INNER JOIN rediger r ON l.ID_LIVRE = r.ID_LIVRE  INNER JOIN auteur a ON r.ID_AUTEUR = a.ID_AUTEUR  LEFT JOIN rayon ra ON l.ID_RAYON = ra.ID_RAYON  LEFT JOIN etagere e ON ra.ID_ETAGER = e.ID_ETAGERE  INNER JOIN categorie c ON l.ID_CATEGORIE = c.ID_CATEGORIE  INNER JOIN lange la ON l.ID_LANGUE = la.ID_LANGUE WHERE l.ID_LIVRE = :idlivre GROUP BY l.ID_LIVRE");
     query.bindValue(":idlivre", idLivre);
     if (query.exec()) {
         if (query.next()) {
@@ -306,7 +301,7 @@ void livres::on_bt_modifier_clicked()
     QFile::copy(couverturePath, destinationPath);
     QString subPath = destinationPath.mid(destinationPath.indexOf("images"));
     QString couvertureMinPath = ui->img_couv_min->text();
-    QString destinationDirectoryMin = "C:/xampp/htdocs/GestionBiblio/images/book_cover/book_cover_min";
+    QString destinationDirectoryMin = "C:/xampp/htdocs/GestionBiblio/images/book_cover/wishlist_image";
     QString fileNameMin = QFileInfo(couvertureMinPath).fileName();
     QString destinationPathMin = QDir(destinationDirectoryMin).filePath(fileNameMin);
     QFile::copy(couvertureMinPath, destinationPathMin);
@@ -384,5 +379,15 @@ void livres::on_bt_supprimer_clicked()
     } else {
         QMessageBox::information(this, "Error", deleteLivreQuery.lastError().text());
     }
+}
+
+
+void livres::on_bt_afficher_clicked()
+{
+    if (!touslivre) {
+        touslivre = new tousLivres(this);
+        touslivre->hide();
+    }
+    touslivre->show();
 }
 

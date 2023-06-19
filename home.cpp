@@ -54,6 +54,7 @@ void home::on_bt_livre_clicked()
         livre->hide();
     }
     livre->show();
+
 }
 
 

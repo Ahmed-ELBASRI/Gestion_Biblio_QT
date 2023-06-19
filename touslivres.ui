@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>enmpruntes</class>
- <widget class="QDialog" name="enmpruntes">
+ <class>tousLivres</class>
+ <widget class="QDialog" name="tousLivres">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1230</width>
-    <height>663</height>
+    <width>1581</width>
+    <height>840</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Empruntes</string>
+   <string>Dialog</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -29,9 +29,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>510</x>
      <y>10</y>
-     <width>361</width>
+     <width>271</width>
      <height>101</height>
     </rect>
    </property>
@@ -45,41 +45,27 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>Consulter Empruntes</string>
+    <string>Tous les livres</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="table_empruntes">
+  <widget class="QTableWidget" name="table_livre">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>301</y>
-     <width>1231</width>
-     <height>361</height>
+     <x>20</x>
+     <y>270</y>
+     <width>1541</width>
+     <height>351</height>
     </rect>
    </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <property name="columnCount">
+    <number>12</number>
+   </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>150</number>
+    <number>130</number>
    </attribute>
-   <column>
-    <property name="text">
-     <string>ID EMPRUNTE</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>ID PERSONNE</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>NOM</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>PRENOM</string>
-    </property>
-   </column>
    <column>
     <property name="text">
      <string>ID LIVRE</string>
@@ -87,30 +73,65 @@
    </column>
    <column>
     <property name="text">
-     <string>TITRE LIVRE</string>
+     <string>TITRE</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>DATE EMPRUNTE</string>
+     <string>DESCRIPTION</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>DATE RETURN EMPRUNTE</string>
+     <string>LANGUE</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>DATE END EMPRUNT</string>
+     <string>DATE PULICATION</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>CATEGORIE</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>AUTEUR</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>PRIX</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>ID RAYON</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>ID ETAGER</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>NOMBRE PAGES</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>ISBN</string>
     </property>
    </column>
   </widget>
   <widget class="QPushButton" name="bt_recherche">
    <property name="geometry">
     <rect>
-     <x>1010</x>
-     <y>200</y>
+     <x>1020</x>
+     <y>150</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -141,8 +162,8 @@ background-color:#27a9e3;
   <widget class="QPushButton" name="bt_reload">
    <property name="geometry">
     <rect>
-     <x>1010</x>
-     <y>130</y>
+     <x>1020</x>
+     <y>80</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -170,11 +191,29 @@ background-color:#27a9e3;
     <string>Reload</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>160</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Value :</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>210</y>
+     <x>30</x>
+     <y>160</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -191,58 +230,78 @@ background-color:#27a9e3;
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>210</y>
+     <x>260</x>
+     <y>160</y>
      <width>221</width>
      <height>31</height>
     </rect>
    </property>
    <item>
     <property name="text">
-     <string>ID emprunte</string>
+     <string>ID LIVRE</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>ID personne</string>
+     <string>TITRE</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Nom</string>
+     <string>DESCRIPTION</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Prenom</string>
+     <string>LANGUE</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>ID livre</string>
+     <string>DATE PUBLICATION</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Nom de livre</string>
+     <string>CATEGORIE</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Date emprunte</string>
+     <string>AUTEUR</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Date Return Emprunt</string>
+     <string>PRIX</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ID RAYON</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ID ETAGER</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>NOMBRE PAGES</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ISBN</string>
     </property>
    </item>
   </widget>
   <widget class="QLineEdit" name="tb_search">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>210</y>
+     <x>700</x>
+     <y>160</y>
      <width>241</width>
      <height>31</height>
     </rect>
