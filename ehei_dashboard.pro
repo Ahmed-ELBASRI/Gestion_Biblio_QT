@@ -14,11 +14,13 @@ SOURCES += \
     empruntes.cpp \
     etagers_rayons.cpp \
     home.cpp \
+    homeresponsable.cpp \
     langues.cpp \
     livres.cpp \
     main.cpp \
     mainwindow.cpp \
     reservation.cpp \
+    responsable.cpp \
     touslivres.cpp
 
 HEADERS += \
@@ -27,10 +29,12 @@ HEADERS += \
     empruntes.h \
     etagers_rayons.h \
     home.h \
+    homeresponsable.h \
     langues.h \
     livres.h \
     mainwindow.h \
     reservation.h \
+    responsable.h \
     touslivres.h
 
 FORMS += \
@@ -39,10 +43,12 @@ FORMS += \
     empruntes.ui \
     etagers_rayons.ui \
     home.ui \
+    homeresponsable.ui \
     langues.ui \
     livres.ui \
     mainwindow.ui \
     reservation.ui \
+    responsable.ui \
     touslivres.ui
 
 # Default rules for deployment.

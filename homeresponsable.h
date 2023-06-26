@@ -1,5 +1,5 @@
-#ifndef HOME_H
-#define HOME_H
+#ifndef HOMERESPONSABLE_H
+#define HOMERESPONSABLE_H
 
 #include <QDialog>
 #include <QMessageBox>
@@ -10,22 +10,30 @@
 #include "etagers_rayons.h"
 #include "langues.h"
 #include "livres.h"
-#include "responsable.h"
 #include <QtSql>
 #include <QSqlDatabase>
-
 namespace Ui {
-class home;
+class HomeResponsable;
 }
 
-class home : public QDialog
+class HomeResponsable : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit home(QWidget *parent = nullptr);
-    ~home();
+    explicit HomeResponsable(QWidget *parent = nullptr);
+    ~HomeResponsable();
 
+private:
+    Ui::HomeResponsable *ui;
+    reservation *res;
+    Auteurs *auteur;
+    categories *categorie;
+    Langues *langue;
+    livres *livre;
+    enmpruntes *emprunte;
+    etages_rayons *etager_rayon;
+    QSqlDatabase db;
 private slots:
     void on_bt_reservation_clicked();
 
@@ -41,20 +49,6 @@ private slots:
 
     void on_bt_langue_clicked();
 
-    void on_bt_responsable_clicked();
-
-private:
-    Ui::home *ui;
-    reservation *res;
-    Auteurs *auteur;
-    categories *categorie;
-    Langues *langue;
-    livres *livre;
-    enmpruntes *emprunte;
-    etages_rayons *etager_rayon;
-    responsable *responsabl;
-    QSqlDatabase db;
-
 };
 
-#endif // HOME_H
+#endif // HOMERESPONSABLE_H

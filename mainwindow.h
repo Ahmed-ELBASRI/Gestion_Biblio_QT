@@ -7,6 +7,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include "home.h"
+#include "homeresponsable.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+
 };
 
 #endif // MAINWINDOW_H

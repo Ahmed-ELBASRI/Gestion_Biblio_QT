@@ -20,7 +20,6 @@ void reservation::showEvent(QShowEvent *event){
     populateReservationTable();
 }
 void reservation::populateReservationTable(){
-    // Retrieve the reservations from the database and populate the table widget
         QSqlQuery query("SELECT r.ID_RESERVATION,p.ID_PERSONNE,p.NOM,p.PRENOM,r.ID_LIVRE,l.TITRE,DATE(r.DATERESERVATION) as 'DATE RESERVATION' FROM reserverlivre r inner join personne p on r.ID_PERSONNE = p.ID_PERSONNE INNER join livre l on r.ID_LIVRE = l.ID_LIVRE where r.archive = 0 and r.ETAT like 'pending'");
 
     int row = 0;
@@ -37,7 +36,6 @@ void reservation::populateReservationTable(){
                 QString titreLivre = query.value("TITRE").toString();
                 QString dateRes = query.value("DATE RESERVATION").toString();
 
-//                 Retrieve other reservation details as needed
 
                 QTableWidgetItem *idres = new QTableWidgetItem(idReservation);
                 QTableWidgetItem *idperso = new QTableWidgetItem(idPersonne);
@@ -47,7 +45,6 @@ void reservation::populateReservationTable(){
                 QTableWidgetItem *titrelivre = new QTableWidgetItem(titreLivre);
                 QTableWidgetItem *dateres = new QTableWidgetItem(dateRes);
 
-                // Create other QTableWidgetItem objects for other reservation details
 
                 ui->table_reservation->setItem(row, 0, idres);
                 ui->table_reservation->setItem(row, 1, idperso);
@@ -58,15 +55,12 @@ void reservation::populateReservationTable(){
                 ui->table_reservation->setItem(row, 6, dateres);
 
 
-                // Set other QTableWidgetItem objects for other reservation details
 
-                // Create and add the confirm and refuse buttons
                 QPushButton *confirmButton = new QPushButton("Confirmer");
                 QPushButton *refuseButton = new QPushButton("Refuser");
                 ui->table_reservation->setCellWidget(row, 7, confirmButton);
                 ui->table_reservation->setCellWidget(row, 8, refuseButton);
 
-                // Connect the confirm and refuse buttons to their respective slots
                 connect(confirmButton, &QPushButton::clicked, this, &reservation::confirmReservation);
                 connect(refuseButton, &QPushButton::clicked, this, &reservation::refuseReservation);
 

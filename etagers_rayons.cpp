@@ -46,22 +46,18 @@ void etages_rayons::populateEtagersTable(){
                 QString idEtager = query.value("ID_ETAGERE").toString();
                 QString nbrRayon = query.value("NBRRAYON").toString();
 
-                //Retrieve other reservation details as needed
 
                 QTableWidgetItem *idEtag = new QTableWidgetItem(idEtager);
                 QTableWidgetItem *nbrRay = new QTableWidgetItem(nbrRayon);
 
 
-                // Create other QTableWidgetItem objects for other reservation details
 
                 ui->tabe_etagers->setItem(row, 0, idEtag);
                 ui->tabe_etagers->setItem(row, 1, nbrRay);
 
-                // Create and add the confirm and refuse buttons
                 QPushButton *refuseButton = new QPushButton("Supprimer");
                 ui->tabe_etagers->setCellWidget(row, 2, refuseButton);
 
-                // Connect the confirm and refuse buttons to their respective slots
                 connect(refuseButton, &QPushButton::clicked, this, &etages_rayons::refuseEtager);
 
                 ++row;
@@ -81,7 +77,7 @@ void etages_rayons::populateRayonsTable(){
     if(db.open()){
         if(query.exec()){
             ui->table_rayon->setRowCount(query.size());
-            ui->table_rayon->setColumnCount(4);
+            ui->table_rayon->setColumnCount(3);
             while (query.next()) {
                 QString idRayon = query.value("ID_RAYON").toString();
                 QString idEtager = query.value("ID_ETAGER").toString();
@@ -94,20 +90,16 @@ void etages_rayons::populateRayonsTable(){
                 QTableWidgetItem *capRay = new QTableWidgetItem(capRayon);
 
 
-                // Create other QTableWidgetItem objects for other reservation details
 
                 ui->table_rayon->setItem(row, 0, idRay);
                 ui->table_rayon->setItem(row, 1, idEtag);
                 ui->table_rayon->setItem(row, 2, capRay);
 
 
-                // Set other QTableWidgetItem objects for other reservation details
 
-                // Create and add the confirm and refuse buttons
-                QPushButton *refuseButton = new QPushButton("Supprimer");
-                ui->table_rayon->setCellWidget(row, 3, refuseButton);
+//                QPushButton *refuseButton = new QPushButton("Supprimer");
+//                ui->table_rayon->setCellWidget(row, 3, refuseButton);
 
-                // Connect the confirm and refuse buttons to their respective slots
 //                connect(refuseButton, &QPushButton::clicked, this, &etages_rayons::refuseEtager);
 
                 ++row;
@@ -127,7 +119,6 @@ void etages_rayons::refuseEtager()
     QTableWidgetItem* idItem = ui->tabe_etagers->item(row, 0);
     QString etagerID = idItem->text();
 
-    // Set id_rayon in livre table to NULL
     QSqlQuery updateLivreQuery;
     QSqlQuery selectRayonQuery;
     selectRayonQuery.prepare("select r.ID_RAYON from livre l INNER join rayon r on l.ID_RAYON = r.ID_RAYON where r.ID_ETAGER = :idetager");
@@ -144,7 +135,6 @@ void etages_rayons::refuseEtager()
         }
     } else {
     }
-    // Delete the associated rows in the 'rayon' table
     QSqlQuery deleteRayonQuery;
     deleteRayonQuery.prepare("DELETE FROM rayon WHERE ID_ETAGER = :etagerId");
     deleteRayonQuery.bindValue(":etagerId", etagerID);
@@ -152,7 +142,6 @@ void etages_rayons::refuseEtager()
         QMessageBox::critical(this, "Error", "Failed to delete associated rows in the 'rayon' table.");
     }
 
-    // Delete the 'etager' from the database
     QSqlQuery deleteEtagerQuery;
     deleteEtagerQuery.prepare("DELETE FROM etagere WHERE ID_ETAGERE = :etagerId");
     deleteEtagerQuery.bindValue(":etagerId", etagerID);
@@ -160,8 +149,7 @@ void etages_rayons::refuseEtager()
         QMessageBox::critical(this, "Error", "Failed to delete the 'etager' from the database.");
     }
 
-    // Display success message
-    QMessageBox::information(this, "Success", "The 'etager' and associated rows have been deleted successfully.");
+    QMessageBox::information(this, "Success", "etager removed successfully.");
     populateEtagersTable();
     populateRayonsTable();
 }
@@ -184,14 +172,13 @@ void etages_rayons::on_bt_ajouter_clicked()
     if(query.exec()){
         QMessageBox::information(this, "Success", "etagers est ajoute.");
         populateEtagersTable();
-        populateRayonsTable();
-
+        populateEtagersRayonsCombos();
     }else{
         QMessageBox::information(this, "Error", query.lastError().text());
     }
     QSqlQuery query2;
 
-    QSqlQuery maxIDRayon("select MAX(ID_ETAGERE) as 'ID' from etagere");
+    QSqlQuery maxIDRayon("select MAX(ID_RAYON) as 'ID' from rayon");
     maxIDRayon.exec();
     maxIDRayon.next();
     QString IDRayon = maxIDRayon.value("ID").toString();
@@ -204,7 +191,7 @@ void etages_rayons::on_bt_ajouter_clicked()
         query2.exec();
         IDValueRayon++;
     }
-
+    populateRayonsTable();
 }
 
 
@@ -214,11 +201,11 @@ void etages_rayons::on_cb_etager_currentIndexChanged(int index)
     int selectedIdEtager = selectedOption.toInt();
 
     for (int row = 0; row < ui->table_rayon->rowCount(); ++row) {
-        QTableWidgetItem* item = ui->table_rayon->item(row, 1); // Assuming the idEtager column is at index 1
+        QTableWidgetItem* item = ui->table_rayon->item(row, 1);
 
         if (item->text().toInt() == selectedIdEtager) {
             ui->table_rayon->setRowHidden(row, false);
-        } else {
+        }else {
             ui->table_rayon->setRowHidden(row, true);
         }
     }
@@ -239,5 +226,13 @@ void etages_rayons::on_cb_rayon_currentIndexChanged(int index)
 //            ui->table_rayon->setRowHidden(row, true);
 //        }
 //    }
+}
+
+
+void etages_rayons::on_bt_reload_clicked()
+{
+    ui->table_rayon->clearContents();
+    ui->table_rayon->setRowCount(0);
+    populateRayonsTable();
 }
 

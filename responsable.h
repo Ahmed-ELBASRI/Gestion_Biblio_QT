@@ -1,5 +1,5 @@
-#ifndef AUTEURS_H
-#define AUTEURS_H
+#ifndef RESPONSABLE_H
+#define RESPONSABLE_H
 
 #include <QDialog>
 #include <QtSql>
@@ -8,31 +8,33 @@
 #include <QTableWidgetItem>
 #include <QDateTime>
 #include <QFileDialog>
+#include <QDate>
 
 namespace Ui {
-class Auteurs;
+class responsable;
 }
 
-class Auteurs : public QDialog
+class responsable : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Auteurs(QWidget *parent = nullptr);
-    ~Auteurs();
+    explicit responsable(QWidget *parent = nullptr);
+    ~responsable();
 
 private:
-    Ui::Auteurs *ui;
+    Ui::responsable *ui;
     void showEvent(QShowEvent *event);
     QSqlDatabase db;
-    void populateAuteursTable();
-    int selectedAuteurId ;
+    void populateResponsalbesTable();
+    int selectedResponsableId ;
 private slots:
-    void refuseAuteurs();
-    void modifierAuteurs();
+    void refuseResponsable();
+    void modifierResponsable();
     void on_bt_ajouter_clicked();
     void on_ck_modifer_stateChanged(int arg1);
     void on_bt_modifier_clicked();
 };
 
-#endif // AUTEURS_H
+
+#endif // RESPONSABLE_H

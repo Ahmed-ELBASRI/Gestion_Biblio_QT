@@ -78,7 +78,6 @@ void enmpruntes::populateEmprunteTable(){
                 QTableWidgetItem *dateRet = new QTableWidgetItem(dateReturn);
                 QTableWidgetItem *dateendemp = new QTableWidgetItem(dateEndEmp);
 
-                // Create other QTableWidgetItem objects for other reservation details
 
                 ui->table_empruntes->setItem(row, 0, idemp);
                 ui->table_empruntes->setItem(row, 1, idperso);

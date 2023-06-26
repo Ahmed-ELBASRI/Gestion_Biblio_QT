@@ -34,6 +34,7 @@ private slots:
     void on_bt_ajouter_clicked();
     void on_cb_etager_currentIndexChanged(int index);
     void on_cb_rayon_currentIndexChanged(int index);
+    void on_bt_reload_clicked();
 };
 
 #endif // ETAGERS_RAYONS_H

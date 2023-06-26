@@ -226,9 +226,9 @@ border-radius: 4px;
    <widget class="QTableWidget" name="table_rayon">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>120</x>
       <y>230</y>
-      <width>511</width>
+      <width>401</width>
       <height>271</height>
      </rect>
     </property>
@@ -248,11 +248,6 @@ border-radius: 4px;
     <column>
      <property name="text">
       <string>CAPACITE RAYON</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Supprimer</string>
      </property>
     </column>
    </widget>
@@ -283,11 +278,38 @@ border-radius: 4px;
       <height>31</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>TOUS</string>
-     </property>
-    </item>
+   </widget>
+   <widget class="QPushButton" name="bt_reload">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>70</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bt_ajouter{
+color:black;
+background-color:#a0a0a0;
+border-width:0px;
+border-radius:4px;
+}
+#bt_ajouter:hover{
+
+background-color:#27a9e3;
+
+}</string>
+    </property>
+    <property name="text">
+     <string>Reload</string>
+    </property>
    </widget>
   </widget>
  </widget>

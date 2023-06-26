@@ -23,7 +23,6 @@ void tousLivres::showEvent(QShowEvent *event){
     populateReservationTable();
 }
 void tousLivres::populateReservationTable(){
-    // Retrieve the reservations from the database and populate the table widget
     QSqlQuery query("SELECT L.ID_LIVRE,L.ID_RAYON,L.TITRE,L.DESCRIPTION,L.ISBN,L.ANNEEPUBLICATION,L.NOMBREPAGE,L.PRIX,LA.LIBELLE_LANGUE,C.LIBELLE_CATEGORIE,E.ID_ETAGERE ,GROUP_CONCAT(A.NOM_AUTEUR SEPARATOR ',') AS NOM_AUTEUR FROM livre L INNER JOIN rediger R ON L.ID_LIVRE = R.ID_LIVRE INNER JOIN auteur A ON R.ID_AUTEUR = A.ID_AUTEUR INNER JOIN lange LA ON L.ID_LANGUE = LA.ID_LANGUE INNER JOIN categorie C ON L.ID_CATEGORIE = C.ID_CATEGORIE INNER JOIN rayon RR ON L.ID_RAYON = RR.ID_RAYON INNER JOIN etagere E ON RR.ID_ETAGER = E.ID_ETAGERE GROUP BY L.ID_LIVRE;");
 
     int row = 0;

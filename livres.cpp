@@ -23,6 +23,12 @@ void livres::showEvent(QShowEvent *event){
     db.setPassword("");
     db.setDatabaseName("gestion_biblio");
     db.open();
+    ui->cb_auteur->clear();
+    ui->cb_categorie->clear();
+    ui->cb_etagers->clear();
+    ui->cb_rayon->clear();
+    ui->cb_livre->clear();
+    ui->cb_langue->clear();
     populateCombosLivre();
     ui->bt_ajouter->setEnabled(false);
 }
@@ -233,7 +239,6 @@ void livres::on_cb_livre_currentIndexChanged()
 
             ui->tb_titre->setText(query.value("TITRE").toString());
             QString rayon = query.value("ID_ETAGERE").toString();
-            // Find the index of the rayon in the combo box and set it
             for (int i = 0; i < ui->cb_etagers->count(); i++) {
                 if (ui->cb_etagers->itemText(i) == rayon) {
                     ui->cb_etagers->setCurrentIndex(i);
@@ -242,7 +247,6 @@ void livres::on_cb_livre_currentIndexChanged()
             }
 
             int idLangue = query.value("ID_LANGUE").toInt();
-            // Find the index of the langue in the combo box and set it
             for (int i = 0; i < ui->cb_langue->count(); i++) {
                 if (ui->cb_langue->itemData(i).toInt() == idLangue) {
                     ui->cb_langue->setCurrentIndex(i);
@@ -251,7 +255,6 @@ void livres::on_cb_livre_currentIndexChanged()
             }
 
             int idCategorie = query.value("ID_CATEGORIE").toInt();
-            // Find the index of the categorie in the combo box and set it
             for (int i = 0; i < ui->cb_categorie->count(); i++) {
                 if (ui->cb_categorie->itemData(i).toInt() == idCategorie) {
                     ui->cb_categorie->setCurrentIndex(i);
@@ -260,7 +263,6 @@ void livres::on_cb_livre_currentIndexChanged()
             }
 
             int idAuteur = query.value("ID_AUTEUR").toInt();
-            // Find the index of the auteur in the combo box and set it
             for (int i = 0; i < ui->cb_auteur->count(); i++) {
                 if (ui->cb_auteur->itemData(i).toInt() == idAuteur) {
                     ui->cb_auteur->setCurrentIndex(i);
